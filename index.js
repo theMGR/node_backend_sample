@@ -42,6 +42,3 @@ app.get("/hello", (req, res) => {
 
 const hellowRoute = require('./routes/hellowroute')
 app.use(hellowRoute);
-app.listen(port, hostName, function () {
-    console.log(`server running on host: ${hostName} port: ${port}`);
-});
