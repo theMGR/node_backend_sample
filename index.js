@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors'); // Import CORS package
 const app = express();
+const port = 5000;
 
 Db = "mongodb+srv://mahendhraa:123454321@cluster0.b5s21.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
@@ -25,7 +26,7 @@ app.use(productRouter);
 app.use(subCategoryRouter);
 app.use(orderRouter);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || port;
 
 mongoose.connect(Db).then(() => {
   console.log('connected');
@@ -33,4 +34,14 @@ mongoose.connect(Db).then(() => {
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}!`);
+});
+
+app.get("/hello", (req, res) => {
+  res.send('hello');
+});
+
+const hellowRoute = require('./routes/hellowroute')
+app.use(hellowRoute);
+app.listen(port, hostName, function () {
+    console.log(`server running on host: ${hostName} port: ${port}`);
 });
